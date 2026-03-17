@@ -6,8 +6,14 @@
 <title>Crypto Wallet</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-:root{
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+:root {
   --ph:#7C5CFC;--gr:#4ADE80;--bg:#0e0e0e;--bg2:#1a1a1a;--bg3:#222;
   --bdr:#2a2a2a;--txt:#fff;--txt2:#888;--txt3:#444;--red:#f87171;
   --font:'Inter',sans-serif;--mono:'Space Mono',monospace;
@@ -15,86 +21,134 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: var(--font);
   background: var(--bg);
 }
-.wrap{
-  display:flex;
-  justify-content:center;
-  padding:16px 8px;
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0;
 }
-.phone{
-  width:100%;
-  max-width:390px; /* keeps original design max width */
-  background:var(--bg);
-  border-radius:44px;
-  border:1px solid #1e1e1e;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  min-height:844px;
-  position:relative;
-  font-family:var(--font);
+.phone {
+  width: 100%;
+  max-width: 390px;   /* original design max width */
+  height: 100%;       /* take full screen height */
+  background: var(--bg);
+  border-radius: 44px;
+  border: 1px solid #1e1e1e;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font);
 }
 
-/* rest of your CSS remains the same */
-.screen{display:none;flex-direction:column;flex:1;overflow:hidden;}
-.screen.on{display:flex;}
+/* SCREENS */
+.screen {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+.screen.on {
+  display: flex;
+}
 
 /* HEADER */
-.hdr{padding:20px 20px 0;flex-shrink:0;}
-.hdr-top{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
-/* ... keep all other CSS as is ... */
-
-/* OPTIONAL: make scrollable areas fit smaller screens */
-.sa, .pg-scroll{
-  max-height: calc(100vh - 220px); /* ensures content fits on screen */
-  overflow-y:auto;
+.hdr {
+  padding: 16px 16px 8px;
+  flex-shrink: 0;
 }
-.sa::-webkit-scrollbar, .pg-scroll::-webkit-scrollbar {display:none;}
+.hdr-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+/* SCROLLABLE CONTENT */
+.sa, .pg-scroll {
+  flex: 1;                 /* take remaining height */
+  overflow-y: auto;        /* scroll if content overflows */
+  -webkit-overflow-scrolling: touch; /* smooth mobile scroll */
+}
+.sa::-webkit-scrollbar, .pg-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* RESPONSIVE FONT & ELEMENTS */
+@media (max-height: 700px) {
+  .hdr { padding: 12px 12px 6px; }
+  .total-amt { font-size: 1.6rem; }
+  .tc-name { font-size: 0.85rem; }
+}
+@media (max-width: 360px) {
+  .phone { border-radius: 30px; }
+  .total-amt { font-size: 1.5rem; }
+  .tc-name { font-size: 0.8rem; }
+}
+.fbtn { padding: 0.5rem; font-size: 0.95rem; }
+.field-inp, .finp { font-size: 0.9rem; }
+
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <div class="phone" id="phone">
-    <!-- ════ HOME SCREEN (keep all your HTML content here as is) ════ -->
+    <!-- HOME SCREEN -->
     <div id="s-home" class="screen on">
-      <!-- Your home screen HTML -->
+      <div class="hdr">
+        <div class="hdr-top">
+          <h1 style="color:var(--txt)">Home Screen</h1>
+        </div>
+      </div>
+      <div class="sa">
+        <p style="color:var(--txt2);padding:16px;">Your home screen content goes here...</p>
+      </div>
     </div>
-    <!-- ════ EDIT PROFILE ════ -->
+
+    <!-- EDIT PROFILE -->
     <div id="s-editprofile" class="screen page">
-      <!-- Edit profile HTML -->
+      <div class="hdr"><h1 style="color:var(--txt)">Edit Profile</h1></div>
+      <div class="sa"><p style="color:var(--txt2);padding:16px;">Edit profile content here...</p></div>
     </div>
-    <!-- ════ SEND ════ -->
+
+    <!-- SEND -->
     <div id="s-send" class="screen page">
-      <!-- Send screen HTML -->
+      <div class="hdr"><h1 style="color:var(--txt)">Send</h1></div>
+      <div class="sa"><p style="color:var(--txt2);padding:16px;">Send screen content here...</p></div>
     </div>
-    <!-- ════ SWAP ════ -->
+
+    <!-- SWAP -->
     <div id="s-swap" class="screen page">
-      <!-- Swap screen HTML -->
+      <div class="hdr"><h1 style="color:var(--txt)">Swap</h1></div>
+      <div class="sa"><p style="color:var(--txt2);padding:16px;">Swap screen content here...</p></div>
     </div>
-    <!-- ════ RECEIVE ════ -->
+
+    <!-- RECEIVE -->
     <div id="s-receive" class="screen page">
-      <!-- Receive screen HTML -->
+      <div class="hdr"><h1 style="color:var(--txt)">Receive</h1></div>
+      <div class="sa"><p style="color:var(--txt2);padding:16px;">Receive screen content here...</p></div>
     </div>
-    <!-- ════ BUY ════ -->
+
+    <!-- BUY -->
     <div id="s-buy" class="screen page">
-      <!-- Buy screen HTML -->
+      <div class="hdr"><h1 style="color:var(--txt)">Buy</h1></div>
+      <div class="sa"><p style="color:var(--txt2);padding:16px;">Buy screen content here...</p></div>
     </div>
   </div>
 </div>
 
 <script>
-// Example JS to handle screen switching
+// Screen switching logic
 function go(screenId){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
   document.getElementById(screenId).classList.add('on');
 }
-function back(){
-  go('s-home');
-}
+function back(){ go('s-home'); }
 </script>
 
 </body>
